@@ -9,7 +9,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {SelectModule} from 'primeng/select';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {OrderService} from '../../../../services/order-service';
-import {disabled, form, required, FormField} from '@angular/forms/signals';
+import {disabled, form, maxLength, minLength, required, FormField} from '@angular/forms/signals';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {MessageService} from 'primeng/api';
 import {TranslateService} from '@ngx-translate/core';
@@ -56,14 +56,18 @@ export class OrderNew implements OnInit {
     protected orderForm = form(this.order, schemaPath => {
         disabled(schemaPath.referenceCode, () => this.isLoading());
         required(schemaPath.referenceCode, {message: 'app.pages.orders.validation.reference_code_required'});
+        minLength(schemaPath.referenceCode, 3, {message: 'app.pages.orders.validation.reference_code_size'});
+        maxLength(schemaPath.referenceCode, 100, {message: 'app.pages.orders.validation.reference_code_size'});
 
         disabled(schemaPath.description, () => this.isLoading());
+        maxLength(schemaPath.description, 254, {message: 'app.pages.orders.validation.description_max'});
 
         disabled(schemaPath.clientId, () => this.isLoading());
         required(schemaPath.clientId, {message: 'app.pages.orders.validation.client_id_required'});
 
         disabled(schemaPath.productIds, () => this.isLoading());
         required(schemaPath.productIds, {message: 'app.pages.orders.validation.product_ids_required'});
+        maxLength(schemaPath.productIds, 10, {message: 'app.pages.orders.validation.product_ids_max'});
     });
 
     ngOnInit() {
@@ -141,11 +145,12 @@ export class OrderNew implements OnInit {
 
     protected submit(event: Event) {
         event.preventDefault();
+
         this.isLoading.set(true);
 
         this.orderService.create({
-            referenceCode: this.order().referenceCode,
-            description: this.order().description,
+            referenceCode: this.order().referenceCode.trim(),
+            description: this.order().description.trim(),
             clientId: this.order().clientId,
             productIds: this.order().productIds
         })

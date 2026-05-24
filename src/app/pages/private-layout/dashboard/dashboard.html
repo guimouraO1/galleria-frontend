@@ -1,3 +1,86 @@
-<div class="mx-auto mt-12 w-full max-w-6xl md:mt-24">
-    <h1 class="m-0 text-xl font-semibold">{{'app.pages.dashboard.title' | translate}}</h1>
+<div class="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-4 md:mt-10">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div class="flex flex-col gap-1">
+            <h1 class="m-0 text-xl font-semibold">{{'app.pages.dashboard.title' | translate}}</h1>
+            @if (dashboard(); as dashboard) {
+                <p class="m-0 text-sm text-color-secondary">
+                    {{dashboard.currentStartDate | longDate}} - {{dashboard.currentEndDate | longDate}}
+                </p>
+            }
+        </div>
+
+        <div class="flex w-full flex-col gap-1 sm:w-60">
+            <label class="text-sm text-color-secondary">{{'app.pages.dashboard.fields.date' | translate}}</label>
+            <p-datepicker
+                [ngModel]="selectedDate()"
+                (ngModelChange)="changeDate($event)"
+                [showIcon]="true"
+                iconDisplay="input"
+                dateFormat="dd/mm/yy"
+                [readonlyInput]="true"
+                [disabled]="isLoading()"
+                styleClass="w-full" />
+        </div>
+    </div>
+
+    @if (isLoading() && !dashboard()) {
+        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+            @for (_ of [1, 2, 3, 4, 5]; track _) {
+                <p-card>
+                    <div class="flex flex-col gap-3">
+                        <p-skeleton width="3rem" height="2rem" />
+                        <p-skeleton width="80%" />
+                        <p-skeleton width="50%" />
+                    </div>
+                </p-card>
+            }
+        </div>
+    } @else {
+        <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+            @for (card of metrics(); track card.label) {
+                <p-card styleClass="h-full">
+                    <div class="flex h-full flex-col gap-3">
+                        <div class="flex items-center justify-between gap-3">
+                            <span class="text-sm text-color-secondary">{{card.label | translate}}</span>
+                            <i [class]="card.icon"></i>
+                        </div>
+
+                        @if (card.money) {
+                            <strong class="text-2xl">{{toNumber(card.metric.current) | currency}}</strong>
+                            <span class="text-xs text-color-secondary">{{'app.pages.dashboard.previous' | translate}}: {{toNumber(card.metric.previous) | currency}}</span>
+                        } @else {
+                            <strong class="text-2xl">{{toNumber(card.metric.current) | number}}</strong>
+                            <span class="text-xs text-color-secondary">{{'app.pages.dashboard.previous' | translate}}: {{toNumber(card.metric.previous) | number}}</span>
+                        }
+
+                        <span class="flex items-center gap-1 text-sm" [class.text-green-500]="toNumber(card.metric.percentage) >= 0" [class.text-red-500]="toNumber(card.metric.percentage) < 0">
+                            <i [class]="toNumber(card.metric.percentage) >= 0 ? 'pi pi-arrow-up' : 'pi pi-arrow-down'"></i>
+                            {{toNumber(card.metric.percentage) | number:'1.0-2'}}%
+                        </span>
+                    </div>
+                </p-card>
+            }
+        </div>
+
+        @if (dashboard(); as dashboard) {
+            <div class="grid gap-4 lg:grid-cols-[1fr_22rem]">
+                <p-card [header]="'app.pages.dashboard.chart.title' | translate">
+                    <p-chart type="bar" [data]="chartData()" [options]="chartOptions" styleClass="h-72" />
+                </p-card>
+
+                <p-card [header]="'app.pages.dashboard.periods.title' | translate">
+                    <div class="flex flex-col gap-4 text-sm">
+                        <div>
+                            <span class="block text-color-secondary">{{'app.pages.dashboard.periods.current' | translate}}</span>
+                            <strong>{{dashboard.currentStartDate | longDate}} - {{dashboard.currentEndDate | longDate}}</strong>
+                        </div>
+                        <div>
+                            <span class="block text-color-secondary">{{'app.pages.dashboard.periods.previous' | translate}}</span>
+                            <strong>{{dashboard.previousStartDate | longDate}} - {{dashboard.previousEndDate | longDate}}</strong>
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+        }
+    }
 </div>

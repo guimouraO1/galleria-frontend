@@ -23,6 +23,7 @@ export const routes: Routes = [
     {
         path: '',
         loadComponent: () => import('./pages/private-layout/private-layout').then((m) => m.PrivateLayout),
+        canActivate: [authGuard],
         canActivateChild: [authGuard],
         children: [
             {
@@ -46,6 +47,11 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/private-layout/clients/update/client-update').then((m) => m.ClientUpdate)
             },
             {
+                title: 'Galleria Bank | Client',
+                path: 'client/:id',
+                loadComponent: () => import('./pages/private-layout/clients/detail/client-detail').then((m) => m.ClientDetail)
+            },
+            {
                 title: 'Galleria Bank | Products',
                 path: 'product',
                 loadComponent: () => import('./pages/private-layout/products/list/products').then((m) => m.Products)
@@ -61,6 +67,11 @@ export const routes: Routes = [
                 loadComponent: () => import('./pages/private-layout/products/update/product-update').then((m) => m.ProductUpdate)
             },
             {
+                title: 'Galleria Bank | Product',
+                path: 'product/:id',
+                loadComponent: () => import('./pages/private-layout/products/detail/product-detail').then((m) => m.ProductDetail)
+            },
+            {
                 title: 'Galleria Bank | Orders',
                 path: 'order',
                 loadComponent: () => import('./pages/private-layout/orders/list/orders').then((m) => m.Orders)
@@ -69,6 +80,11 @@ export const routes: Routes = [
                 title: 'Galleria Bank | New Order',
                 path: 'order/new',
                 loadComponent: () => import('./pages/private-layout/orders/new/order-new').then((m) => m.OrderNew)
+            },
+            {
+                title: 'Galleria Bank | Order',
+                path: 'order/:id',
+                loadComponent: () => import('./pages/private-layout/orders/detail/order-detail').then((m) => m.OrderDetail)
             },
             {
                 title: 'Galleria Bank | User Settings',

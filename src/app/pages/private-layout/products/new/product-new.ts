@@ -5,9 +5,10 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {InputGroupModule} from 'primeng/inputgroup';
 import {InputGroupAddonModule} from 'primeng/inputgroupaddon';
+import {InputNumberModule} from 'primeng/inputnumber';
 import {InputTextModule} from 'primeng/inputtext';
 import {ProductService} from '../../../../services/product-service';
-import {disabled, form, required, FormField} from '@angular/forms/signals';
+import {disabled, form, max, maxLength, min, minLength, required, FormField} from '@angular/forms/signals';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {MessageService} from 'primeng/api';
 import {TranslateService} from '@ngx-translate/core';
@@ -15,7 +16,7 @@ import {TranslateService} from '@ngx-translate/core';
 @UntilDestroy()
 @Component({
     selector: 'app-product-new',
-    imports: [RouterLink, TranslateModule, ButtonModule, CardModule, InputGroupModule, InputGroupAddonModule, InputTextModule, FormField],
+    imports: [RouterLink, TranslateModule, ButtonModule, CardModule, InputGroupModule, InputGroupAddonModule, InputNumberModule, InputTextModule, FormField],
     templateUrl: './product-new.html'
 })
 export class ProductNew {
@@ -29,24 +30,33 @@ export class ProductNew {
 
     private product = signal({
         description: '',
-        value: ''
+        value: null as number | null
     });
 
     protected productForm = form(this.product, schemaPath => {
         disabled(schemaPath.description, () => this.isLoading());
         required(schemaPath.description, {message: 'app.pages.products.validation.description_required'});
+        minLength(schemaPath.description, 3, {message: 'app.pages.products.validation.description_size'});
+        maxLength(schemaPath.description, 254, {message: 'app.pages.products.validation.description_size'});
 
         disabled(schemaPath.value, () => this.isLoading());
         required(schemaPath.value, {message: 'app.pages.products.validation.value_required'});
+        min(schemaPath.value, 0.01, {message: 'app.pages.products.validation.value_min'});
+        max(schemaPath.value, 9999999999999.99, {message: 'app.pages.products.validation.value_max'});
     });
+
+    protected setValue(value: number | null) {
+        this.product.update(product => ({...product, value}));
+    }
 
     protected submit(event: Event) {
         event.preventDefault();
+
         this.isLoading.set(true);
 
         this.productService.create({
-            description: this.product().description,
-            value: Number(this.product().value)
+            description: this.product().description.trim(),
+            value: this.product().value ?? 0
         })
             .pipe(untilDestroyed(this))
             .subscribe({

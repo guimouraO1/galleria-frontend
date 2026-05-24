@@ -19,16 +19,12 @@ export class DarkModeToggle implements OnInit {
     protected preferencesForm = form(this.preferences, () => {});
 
     ngOnInit() {
-        this.applyDarkMode(this.preferences().darkMode);
+        this.preferenceService.applyDarkMode(this.preferences().darkMode);
     }
 
     protected toggleDarkMode(enabled: boolean) {
         this.preferences.set({darkMode: enabled});
         this.preferenceService.setDarkMode(enabled);
-        this.applyDarkMode(enabled);
-    }
-
-    private applyDarkMode(enabled: boolean) {
-        document.documentElement.classList.toggle('app-dark', enabled);
+        this.preferenceService.applyDarkMode(enabled);
     }
 }

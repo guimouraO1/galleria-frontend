@@ -1,0 +1,60 @@
+<div class="mx-auto mt-6 w-full max-w-4xl md:mt-10">
+    <p-card [header]="'app.pages.orders.detail' | translate">
+        @if (order(); as order) {
+            <div class="grid gap-3 sm:grid-cols-2">
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.common.fields.id' | translate}}</span>
+                    <strong>{{order.id}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.orders.fields.referenceCode' | translate}}</span>
+                    <strong>{{order.referenceCode}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.orders.fields.description' | translate}}</span>
+                    <strong>{{order.description}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.orders.fields.clientId' | translate}}</span>
+                    <strong>{{order.clientId}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.orders.fields.total' | translate}}</span>
+                    <strong>{{order.total | currency}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.orders.fields.issuedAt' | translate}}</span>
+                    <strong>{{order.issuedAt | longDate}}</strong>
+                </div>
+            </div>
+
+            <div class="mt-5 app-soft-border rounded-md border">
+                <p-table [value]="order.products ?? []" [stripedRows]="true" [tableStyle]="{'width': '100%'}">
+                    <ng-template #header>
+                        <tr>
+                            <th>{{'app.common.fields.id' | translate}}</th>
+                            <th>{{'app.pages.products.fields.description' | translate}}</th>
+                            <th>{{'app.pages.products.fields.value' | translate}}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template #body let-product>
+                        <tr>
+                            <td>{{product.id}}</td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.value | currency}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template #emptymessage>
+                        <tr>
+                            <td colspan="3" class="py-6 text-center text-color-secondary">{{'app.common.empty.no_data' | translate}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+
+            <div class="mt-5 flex justify-end">
+                <p-button routerLink="/order" [label]="'app.common.actions.back' | translate" severity="secondary" text type="button" styleClass="w-full sm:w-auto" />
+            </div>
+        }
+    </p-card>
+</div>

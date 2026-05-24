@@ -11,5 +11,6 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     providers: [MessageService, ConfirmationService]
 })
 export class App {
+
     protected readonly title = signal('galleria-frontend');
 }

@@ -1,0 +1,25 @@
+<div class="mx-auto mt-6 w-full max-w-3xl md:mt-10">
+    <p-card [header]="'app.pages.products.detail' | translate">
+        @if (product(); as product) {
+            <div class="grid gap-3 sm:grid-cols-2">
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.common.fields.id' | translate}}</span>
+                    <strong>{{product.id}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.products.fields.description' | translate}}</span>
+                    <strong>{{product.description}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.products.fields.value' | translate}}</span>
+                    <strong>{{product.value | currency}}</strong>
+                </div>
+            </div>
+
+            <div class="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                <p-button routerLink="/product" [label]="'app.common.actions.back' | translate" severity="secondary" text type="button" styleClass="w-full sm:w-auto" />
+                <p-button [routerLink]="['/product/update', product.id]" icon="pi pi-pencil" [label]="'app.common.actions.edit' | translate" type="button" styleClass="w-full sm:w-auto" />
+            </div>
+        }
+    </p-card>
+</div>

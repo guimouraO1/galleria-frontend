@@ -6,7 +6,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {AuthService} from '../../services/auth-service';
-import {disabled, form, required, FormField} from '@angular/forms/signals';
+import {disabled, form, maxLength, minLength, required, FormField} from '@angular/forms/signals';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {Router, RouterLink} from '@angular/router';
 import {HttpErrorResponse, HttpStatusCode} from '@angular/common/http';
@@ -35,6 +35,8 @@ export class Login {
     protected loginForm = form(this.login, schemaPath => {
         disabled(schemaPath.login, () => this.isLoading());
         required(schemaPath.login, {message: 'app.pages.login.form.validation.required'});
+        minLength(schemaPath.login, 3, {message: 'app.pages.login.form.validation.username_size'});
+        maxLength(schemaPath.login, 100, {message: 'app.pages.login.form.validation.username_size'});
 
         disabled(schemaPath.password, () => this.isLoading());
         required(schemaPath.password, {message: 'app.pages.login.form.validation.required'});

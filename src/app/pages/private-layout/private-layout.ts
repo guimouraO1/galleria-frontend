@@ -1,4 +1,4 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router, RouterOutlet} from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import {DrawerModule} from 'primeng/drawer';
@@ -18,15 +18,23 @@ export class PrivateLayout {
     private router = inject(Router);
     private tokenService = inject(TokenService);
 
-    protected visible = signal(false);
+    protected visible = false;
 
     protected closeDrawer() {
-        this.visible.set(false);
+        this.visible = false;
     }
 
     protected logout() {
         this.tokenService.clearAccessToken();
         this.closeDrawer();
-        this.router.navigate(['/']);
+        this.clearPrimeOverlays();
+        setTimeout(() => this.router.navigate(['/login'], {replaceUrl: true}));
+    }
+
+    private clearPrimeOverlays() {
+        document.querySelectorAll('.p-drawer-mask, .p-overlay-mask, .p-component-overlay').forEach(overlay => overlay.remove());
+        document.body.classList.remove('p-overflow-hidden');
+        document.body.style.removeProperty('overflow');
+        document.body.style.removeProperty('padding-right');
     }
 }

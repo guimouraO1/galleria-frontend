@@ -8,7 +8,7 @@ import {ButtonModule} from 'primeng/button';
 import {MessageModule} from 'primeng/message';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {UserService} from '../../services/user-service';
-import {disabled, form, minLength, pattern, required, FormField} from '@angular/forms/signals';
+import {disabled, form, maxLength, minLength, pattern, required, FormField} from '@angular/forms/signals';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {Router, RouterLink} from '@angular/router';
 import {MessageService} from 'primeng/api';
@@ -38,13 +38,18 @@ export class CreateUser {
     protected createUserForm = form(this.createUser, schemaPath => {
         disabled(schemaPath.name, () => this.isLoading());
         required(schemaPath.name, {message: 'app.pages.create_user.form.validation.required'});
+        minLength(schemaPath.name, 3, {message: 'app.pages.create_user.form.validation.name_size'});
+        maxLength(schemaPath.name, 254, {message: 'app.pages.create_user.form.validation.name_size'});
 
         disabled(schemaPath.login, () => this.isLoading());
         required(schemaPath.login, {message: 'app.pages.create_user.form.validation.required'});
+        minLength(schemaPath.login, 3, {message: 'app.pages.create_user.form.validation.username_size'});
+        maxLength(schemaPath.login, 100, {message: 'app.pages.create_user.form.validation.username_size'});
 
         disabled(schemaPath.password, () => this.isLoading());
         required(schemaPath.password, {message: 'app.pages.create_user.form.validation.required'});
         minLength(schemaPath.password, 6, {message: 'validation.passwordMin'});
+        maxLength(schemaPath.password, 255, {message: 'app.pages.create_user.form.validation.password_size'});
         pattern(schemaPath.password, /[A-Z]/, {message: 'validation.passwordUppercase'});
         pattern(schemaPath.password, /[a-z]/, {message: 'validation.passwordLowercase'});
         pattern(schemaPath.password, /[0-9]/, {message: 'validation.passwordNumber'});
@@ -56,7 +61,7 @@ export class CreateUser {
 
         this.isLoading.set(true);
 
-        this.userService.create(this.createUser().login, this.createUser().password, this.createUser().name)
+        this.userService.create(this.createUser().login.trim(), this.createUser().password, this.createUser().name.trim())
             .pipe(untilDestroyed(this))
             .subscribe({
                 next: () => this.router.navigate(['login']),

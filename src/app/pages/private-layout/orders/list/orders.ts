@@ -1,6 +1,6 @@
 import {Component, OnInit, computed, inject, signal} from '@angular/core';
-import {CurrencyPipe, DatePipe} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {CurrencyPipe} from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
@@ -10,11 +10,12 @@ import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {SkeletonModule} from 'primeng/skeleton';
 import {MessageService} from 'primeng/api';
 import {TranslateService} from '@ngx-translate/core';
+import {LongDatePipe} from '../../../../shared/pipes/long-date.pipe';
 
 @UntilDestroy()
 @Component({
     selector: 'app-orders',
-    imports: [CurrencyPipe, DatePipe, RouterLink, TranslateModule, ButtonModule, TableModule, SkeletonModule],
+    imports: [CurrencyPipe, RouterLink, TranslateModule, ButtonModule, TableModule, SkeletonModule, LongDatePipe],
     templateUrl: './orders.html'
 })
 export class Orders implements OnInit {
@@ -22,6 +23,7 @@ export class Orders implements OnInit {
     private orderService = inject(OrderService);
     private messageService = inject(MessageService);
     private translateService = inject(TranslateService);
+    private router = inject(Router);
 
     protected orders = signal<Order[]>([]);
     protected isLoading = signal(true);
@@ -54,6 +56,10 @@ export class Orders implements OnInit {
 
         this.cursorHistory.set(history.slice(0, -1));
         this.load(cursor);
+    }
+
+    protected open(id: number) {
+        this.router.navigate(['/order', id]);
     }
 
     private load(cursor: string | null = null) {

@@ -1,11 +1,11 @@
-<div class="mx-auto mt-12 flex w-full max-w-6xl flex-col gap-4 md:mt-24">
+<div class="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-4 md:mt-10">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 class="m-0 text-xl font-semibold">{{'app.pages.orders.title' | translate}}</h1>
         <p-button routerLink="/order/new" icon="pi pi-plus" [label]="'app.common.actions.new' | translate" size="small" styleClass="w-full sm:w-auto" />
     </div>
 
     <div class="app-soft-border rounded-md border">
-        <p-table [value]="orders()" [tableStyle]="{'width': '100%'}">
+        <p-table [value]="orders()" [stripedRows]="true" [rowHover]="true" [tableStyle]="{'width': '100%'}">
             <ng-template #header>
                 <tr>
                     <th>{{'app.common.fields.id' | translate}}</th>
@@ -17,13 +17,13 @@
                 </tr>
             </ng-template>
             <ng-template #body let-order>
-                <tr>
+                <tr class="cursor-pointer p-selectable-row" (click)="open(order.id)">
                     <td>{{order.id}}</td>
                     <td>{{order.referenceCode}}</td>
                     <td>{{order.description}}</td>
                     <td>{{order.clientId}}</td>
                     <td>{{order.total | currency}}</td>
-                    <td>{{order.issuedAt | date: 'short'}}</td>
+                    <td>{{order.issuedAt | longDate}}</td>
                 </tr>
             </ng-template>
             <ng-template #emptymessage>

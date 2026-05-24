@@ -1,8 +1,8 @@
-import {CanActivateFn, createUrlTreeFromSnapshot} from '@angular/router';
+import {CanActivateFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
 import {TokenService} from '../services/token-service';
 
-export const authGuard: CanActivateFn = (route, _state) => {
+export const authGuard: CanActivateFn = () => {
     const tokenService = inject(TokenService);
-    return tokenService.isAuthenticated() ? true : createUrlTreeFromSnapshot(route, ['/login']);
+    return tokenService.isAuthenticated() ? true : inject(Router).createUrlTree(['/login']);
 };

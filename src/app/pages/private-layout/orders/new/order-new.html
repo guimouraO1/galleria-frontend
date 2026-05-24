@@ -25,18 +25,22 @@
                     [loading]="isLoadingClients()"
                     [placeholder]="'app.pages.orders.fields.clientId' | translate"
                     (onChange)="setClientId($event.value)"
-                    styleClass="w-full" />
+                    styleClass="w-full">
+                    <ng-template #footer>
+                        <div class="p-2">
+                            <p-button
+                                (click)="loadMoreClients()"
+                                [disabled]="!hasMoreClients() || isLoadingClients()"
+                                [label]="'app.common.actions.load_more' | translate"
+                                severity="secondary"
+                                text
+                                size="small"
+                                type="button"
+                                styleClass="w-full" />
+                        </div>
+                    </ng-template>
+                </p-select>
             </p-inputGroup>
-            <div class="flex justify-end">
-                <p-button
-                    (click)="loadMoreClients()"
-                    [disabled]="!hasMoreClients() || isLoadingClients()"
-                    [label]="'app.common.actions.load_more' | translate"
-                    severity="secondary"
-                    text
-                    size="small"
-                    type="button" />
-            </div>
             <p-inputGroup>
                 <p-inputGroupAddon addonType="prepend">
                     <i class="pi pi-box"></i>
@@ -50,18 +54,22 @@
                     [placeholder]="'app.pages.orders.fields.productIds' | translate"
                     (onChange)="setProductIds($event.value)"
                     display="chip"
-                    styleClass="w-full" />
+                    styleClass="w-full">
+                    <ng-template #footer>
+                        <div class="p-2">
+                            <p-button
+                                (click)="loadMoreProducts()"
+                                [disabled]="!hasMoreProducts() || isLoadingProducts()"
+                                [label]="'app.common.actions.load_more' | translate"
+                                severity="secondary"
+                                text
+                                size="small"
+                                type="button"
+                                styleClass="w-full" />
+                        </div>
+                    </ng-template>
+                </p-multiselect>
             </p-inputGroup>
-            <div class="flex justify-end">
-                <p-button
-                    (click)="loadMoreProducts()"
-                    [disabled]="!hasMoreProducts() || isLoadingProducts()"
-                    [label]="'app.common.actions.load_more' | translate"
-                    severity="secondary"
-                    text
-                    size="small"
-                    type="button" />
-            </div>
             <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
                 <p-button routerLink="/order" [disabled]="isLoading()" [label]="'app.common.actions.cancel' | translate" severity="secondary" text type="button" styleClass="w-full sm:w-auto" />
                 <p-button [disabled]="orderForm().invalid() || isLoading()" [loading]="isLoading()" [label]="'app.common.actions.save' | translate" type="submit" styleClass="w-full sm:w-auto" />

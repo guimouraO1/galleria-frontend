@@ -6,8 +6,22 @@
 @import "primeicons/primeicons.css";
 
 
+html,
 body {
+  min-height: 100%;
+  background: var(--p-surface-50);
+  color: var(--p-text-color);
+}
+
+body {
+  margin: 0;
   font-family: 'Satoshi', sans-serif;
+}
+
+html.app-dark,
+body.app-dark {
+  background: var(--p-surface-950);
+  color: var(--p-text-color);
 }
 
 .app-soft-border {

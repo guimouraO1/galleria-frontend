@@ -1,4 +1,11 @@
-<p-drawer [(visible)]="visible" [closable]="false">
+<p-drawer [(visible)]="visible" [closable]="false" [modal]="false" [blockScroll]="false">
+    <ng-template #header>
+        <div class="flex w-full items-center justify-between gap-3">
+            <span class="font-semibold">{{'app.layout.private.title' | translate}}</span>
+            <button pButton icon="pi pi-times" severity="secondary" text rounded size="small" type="button" (click)="closeDrawer()"></button>
+        </div>
+    </ng-template>
+
     <app-side-nav (navigate)="closeDrawer()" />
 
     <ng-template #footer>
@@ -18,7 +25,7 @@
 <div class="min-h-screen">
     <header class="app-soft-border flex flex-wrap items-center gap-3 border-b px-4 py-3">
         <div class="flex min-w-0 flex-1 items-center gap-3">
-            <button pButton icon="pi pi-bars" severity="secondary" text rounded size="small" type="button" (click)="visible.set(true)"></button>
+            <button pButton icon="pi pi-bars" severity="secondary" text rounded size="small" type="button" (click)="visible = true"></button>
             <span class="font-semibold">{{'app.layout.private.title' | translate}}</span>
         </div>
 

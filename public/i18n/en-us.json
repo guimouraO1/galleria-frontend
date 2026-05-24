@@ -3,8 +3,10 @@
         "common": {
             "actions": {
                 "actions": "Actions",
+                "back": "Back",
                 "cancel": "Cancel",
                 "delete": "Delete",
+                "edit": "Edit",
                 "load_more": "Load more",
                 "next": "Next",
                 "new": "New",
@@ -53,10 +55,34 @@
         },
         "pages": {
             "dashboard": {
-                "title": "Dashboard"
+                "title": "Dashboard",
+                "previous": "Previous",
+                "fields": {
+                    "date": "Base date"
+                },
+                "metrics": {
+                    "orders_total": "Orders total",
+                    "orders_count": "Orders",
+                    "new_products": "New products",
+                    "new_clients": "New clients",
+                    "new_users": "New users"
+                },
+                "chart": {
+                    "title": "Change versus previous period",
+                    "percentage": "Change"
+                },
+                "periods": {
+                    "title": "Compared periods",
+                    "current": "Current period",
+                    "previous": "Previous period"
+                },
+                "errors": {
+                    "invalid_date": "Enter a valid date"
+                }
             },
             "clients": {
                 "title": "Clients",
+                "detail": "Client details",
                 "new": "New client",
                 "update": "Update client",
                 "fields": {
@@ -66,12 +92,16 @@
                 },
                 "validation": {
                     "name_required": "Name is required",
+                    "name_size": "Name must be between 3 and 254 characters",
                     "cpf_required": "CPF is required",
-                    "phone_required": "Phone is required"
+                    "cpf_invalid": "CPF must contain 11 digits",
+                    "phone_required": "Phone is required",
+                    "phone_invalid": "Phone must contain 11 digits"
                 }
             },
             "products": {
                 "title": "Products",
+                "detail": "Product details",
                 "new": "New product",
                 "update": "Update product",
                 "fields": {
@@ -80,11 +110,15 @@
                 },
                 "validation": {
                     "description_required": "Description is required",
-                    "value_required": "Value is required"
+                    "description_size": "Description must be between 3 and 254 characters",
+                    "value_required": "Value is required",
+                    "value_min": "Value must be greater than zero",
+                    "value_max": "Value exceeds the allowed limit"
                 }
             },
             "orders": {
                 "title": "Orders",
+                "detail": "Order details",
                 "new": "New order",
                 "fields": {
                     "referenceCode": "Reference code",
@@ -96,8 +130,11 @@
                 },
                 "validation": {
                     "reference_code_required": "Reference code is required",
+                    "reference_code_size": "Reference code must be between 3 and 100 characters",
+                    "description_max": "Description must have at most 254 characters",
                     "client_id_required": "Client ID is required",
-                    "product_ids_required": "At least one product is required"
+                    "product_ids_required": "At least one product is required",
+                    "product_ids_max": "An order can contain at most 10 products"
                 },
                 "errors": {
                     "invalid": "Review the order data and try again"
@@ -113,7 +150,10 @@
                     "password": "Password"
                 },
                 "validation": {
-                    "name_required": "Name is required"
+                    "name_required": "Name is required",
+                    "name_size": "Name must be between 3 and 254 characters",
+                    "password_required": "Password is required",
+                    "password_size": "Password must have at most 255 characters"
                 }
             },
             "login": {
@@ -124,7 +164,8 @@
                 "create_account": "Create account",
                 "form": {
                     "validation": {
-                        "required": "This field is required"
+                        "required": "This field is required",
+                        "username_size": "Username must be between 3 and 100 characters"
                     }
                 },
                 "errors": {
@@ -140,7 +181,10 @@
                 "back_to_login": "Back to login",
                 "form": {
                     "validation": {
-                        "required": "This field is required"
+                        "required": "This field is required",
+                        "name_size": "Name must be between 3 and 254 characters",
+                        "username_size": "Username must be between 3 and 100 characters",
+                        "password_size": "Password must have at most 255 characters"
                     }
                 },
                 "password": {

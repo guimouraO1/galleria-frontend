@@ -1,0 +1,29 @@
+<div class="mx-auto mt-6 w-full max-w-3xl md:mt-10">
+    <p-card [header]="'app.pages.clients.detail' | translate">
+        @if (client(); as client) {
+            <div class="grid gap-3 sm:grid-cols-2">
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.common.fields.id' | translate}}</span>
+                    <strong>{{client.id}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.clients.fields.name' | translate}}</span>
+                    <strong>{{client.name}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.clients.fields.cpf' | translate}}</span>
+                    <strong>{{client.cpf}}</strong>
+                </div>
+                <div>
+                    <span class="block text-sm text-color-secondary">{{'app.pages.clients.fields.phone' | translate}}</span>
+                    <strong>{{client.phone}}</strong>
+                </div>
+            </div>
+
+            <div class="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                <p-button routerLink="/client" [label]="'app.common.actions.back' | translate" severity="secondary" text type="button" styleClass="w-full sm:w-auto" />
+                <p-button [routerLink]="['/client/update', client.id]" icon="pi pi-pencil" [label]="'app.common.actions.edit' | translate" type="button" styleClass="w-full sm:w-auto" />
+            </div>
+        }
+    </p-card>
+</div>

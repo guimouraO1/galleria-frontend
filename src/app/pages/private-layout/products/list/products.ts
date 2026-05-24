@@ -1,6 +1,6 @@
 import {Component, OnInit, computed, inject, signal} from '@angular/core';
 import {CurrencyPipe} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
@@ -24,6 +24,7 @@ export class Products implements OnInit {
     private confirmationService = inject(ConfirmationService);
     private messageService = inject(MessageService);
     private translateService = inject(TranslateService);
+    private router = inject(Router);
 
     protected products = signal<Product[]>([]);
     protected isLoading = signal(true);
@@ -56,6 +57,10 @@ export class Products implements OnInit {
 
         this.cursorHistory.set(history.slice(0, -1));
         this.load(cursor);
+    }
+
+    protected open(id: number) {
+        this.router.navigate(['/product', id]);
     }
 
     private load(cursor: string | null = null) {

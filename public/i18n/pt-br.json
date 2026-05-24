@@ -3,8 +3,10 @@
         "common": {
             "actions": {
                 "actions": "A\u00e7\u00f5es",
+                "back": "Voltar",
                 "cancel": "Cancelar",
                 "delete": "Excluir",
+                "edit": "Editar",
                 "load_more": "Carregar mais",
                 "next": "Pr\u00f3xima",
                 "new": "Novo",
@@ -53,10 +55,34 @@
         },
         "pages": {
             "dashboard": {
-                "title": "Dashboard"
+                "title": "Dashboard",
+                "previous": "Anterior",
+                "fields": {
+                    "date": "Data base"
+                },
+                "metrics": {
+                    "orders_total": "Total em pedidos",
+                    "orders_count": "Pedidos",
+                    "new_products": "Novos produtos",
+                    "new_clients": "Novos clientes",
+                    "new_users": "Novos usu\u00e1rios"
+                },
+                "chart": {
+                    "title": "Varia\u00e7\u00e3o contra o per\u00edodo anterior",
+                    "percentage": "Varia\u00e7\u00e3o"
+                },
+                "periods": {
+                    "title": "Per\u00edodos comparados",
+                    "current": "Per\u00edodo atual",
+                    "previous": "Per\u00edodo anterior"
+                },
+                "errors": {
+                    "invalid_date": "Informe uma data v\u00e1lida"
+                }
             },
             "clients": {
                 "title": "Clientes",
+                "detail": "Detalhes do cliente",
                 "new": "Novo cliente",
                 "update": "Atualizar cliente",
                 "fields": {
@@ -66,12 +92,16 @@
                 },
                 "validation": {
                     "name_required": "Nome \u00e9 obrigat\u00f3rio",
+                    "name_size": "Nome deve ter entre 3 e 254 caracteres",
                     "cpf_required": "CPF \u00e9 obrigat\u00f3rio",
-                    "phone_required": "Telefone \u00e9 obrigat\u00f3rio"
+                    "cpf_invalid": "CPF deve conter 11 d\u00edgitos",
+                    "phone_required": "Telefone \u00e9 obrigat\u00f3rio",
+                    "phone_invalid": "Telefone deve conter 11 d\u00edgitos"
                 }
             },
             "products": {
                 "title": "Produtos",
+                "detail": "Detalhes do produto",
                 "new": "Novo produto",
                 "update": "Atualizar produto",
                 "fields": {
@@ -80,11 +110,15 @@
                 },
                 "validation": {
                     "description_required": "Descri\u00e7\u00e3o \u00e9 obrigat\u00f3ria",
-                    "value_required": "Valor \u00e9 obrigat\u00f3rio"
+                    "description_size": "Descri\u00e7\u00e3o deve ter entre 3 e 254 caracteres",
+                    "value_required": "Valor \u00e9 obrigat\u00f3rio",
+                    "value_min": "Valor deve ser maior que zero",
+                    "value_max": "Valor excede o limite permitido"
                 }
             },
             "orders": {
                 "title": "Pedidos",
+                "detail": "Detalhes do pedido",
                 "new": "Novo pedido",
                 "fields": {
                     "referenceCode": "C\u00f3digo de refer\u00eancia",
@@ -96,8 +130,11 @@
                 },
                 "validation": {
                     "reference_code_required": "C\u00f3digo de refer\u00eancia \u00e9 obrigat\u00f3rio",
+                    "reference_code_size": "C\u00f3digo de refer\u00eancia deve ter entre 3 e 100 caracteres",
+                    "description_max": "Descri\u00e7\u00e3o deve ter no m\u00e1ximo 254 caracteres",
                     "client_id_required": "ID do cliente \u00e9 obrigat\u00f3rio",
-                    "product_ids_required": "Informe pelo menos um produto"
+                    "product_ids_required": "Informe pelo menos um produto",
+                    "product_ids_max": "O pedido pode ter no m\u00e1ximo 10 produtos"
                 },
                 "errors": {
                     "invalid": "Revise os dados do pedido e tente novamente"
@@ -113,7 +150,10 @@
                     "password": "Senha"
                 },
                 "validation": {
-                    "name_required": "Nome \u00e9 obrigat\u00f3rio"
+                    "name_required": "Nome \u00e9 obrigat\u00f3rio",
+                    "name_size": "Nome deve ter entre 3 e 254 caracteres",
+                    "password_required": "Senha \u00e9 obrigat\u00f3ria",
+                    "password_size": "Senha deve ter no m\u00e1ximo 255 caracteres"
                 }
             },
             "login": {
@@ -124,7 +164,8 @@
                 "create_account": "Criar conta",
                 "form": {
                     "validation": {
-                        "required": "Este campo \u00e9 obrigat\u00f3rio"
+                        "required": "Este campo \u00e9 obrigat\u00f3rio",
+                        "username_size": "Nome de usu\u00e1rio deve ter entre 3 e 100 caracteres"
                     }
                 },
                 "errors": {
@@ -140,7 +181,10 @@
                 "back_to_login": "Voltar para o login",
                 "form": {
                     "validation": {
-                        "required": "Este campo \u00e9 obrigat\u00f3rio"
+                        "required": "Este campo \u00e9 obrigat\u00f3rio",
+                        "name_size": "Nome deve ter entre 3 e 254 caracteres",
+                        "username_size": "Nome de usu\u00e1rio deve ter entre 3 e 100 caracteres",
+                        "password_size": "Senha deve ter no m\u00e1ximo 255 caracteres"
                     }
                 },
                 "password": {

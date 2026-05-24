@@ -1,11 +1,11 @@
-<div class="mx-auto mt-12 flex w-full max-w-6xl flex-col gap-4 md:mt-24">
+<div class="mx-auto mt-6 flex w-full max-w-6xl flex-col gap-4 md:mt-10">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 class="m-0 text-xl font-semibold">{{'app.pages.products.title' | translate}}</h1>
         <p-button routerLink="/product/new" icon="pi pi-plus" [label]="'app.common.actions.new' | translate" size="small" styleClass="w-full sm:w-auto" />
     </div>
 
     <div class="app-soft-border rounded-md border">
-        <p-table [value]="products()" [tableStyle]="{'width': '100%'}">
+        <p-table [value]="products()" [stripedRows]="true" [rowHover]="true" [tableStyle]="{'width': '100%'}">
             <ng-template #header>
                 <tr>
                     <th>{{'app.common.fields.id' | translate}}</th>
@@ -15,14 +15,14 @@
                 </tr>
             </ng-template>
             <ng-template #body let-product>
-                <tr>
+                <tr class="cursor-pointer p-selectable-row" (click)="open(product.id)">
                     <td>{{product.id}}</td>
                     <td>{{product.description}}</td>
                     <td>{{product.value | currency}}</td>
                     <td>
                         <div class="flex justify-end gap-1">
-                            <p-button [routerLink]="['/product/update', product.id]" icon="pi pi-pencil" severity="secondary" text size="small" />
-                            <p-button (click)="delete(product.id)" icon="pi pi-trash" severity="danger" text size="small" />
+                            <p-button (click)="$event.stopPropagation()" [routerLink]="['/product/update', product.id]" icon="pi pi-pencil" severity="secondary" text size="small" />
+                            <p-button (click)="$event.stopPropagation(); delete(product.id)" icon="pi pi-trash" severity="danger" text size="small" />
                         </div>
                     </td>
                 </tr>
