@@ -1,0 +1,58 @@
+{
+    "app": {
+        "common": {
+            "summary": {
+                "error": "Error"
+            },
+            "errors": {
+                "unexpected": "An unexpected error occurred"
+            }
+        },
+        "pages": {
+            "login": {
+                "title": "Access your account",
+                "username": "Username",
+                "password": "Password",
+                "submit": "Sign in",
+                "create_account": "Create account",
+                "form": {
+                    "validation": {
+                        "required": "This field is required"
+                    }
+                },
+                "errors": {
+                    "invalid-credentials": "Invalid credentials"
+                }
+            },
+            "create_user": {
+                "title": "Create account",
+                "name": "Name",
+                "username": "Username",
+                "password": "Password",
+                "submit": "Create account",
+                "back_to_login": "Back to login",
+                "form": {
+                    "validation": {
+                        "required": "This field is required"
+                    }
+                },
+                "password": {
+                    "prompt": "Enter a password",
+                    "weak": "Weak",
+                    "medium": "Medium",
+                    "strong": "Strong"
+                },
+                "errors": {
+                    "conflict": "A user with this username already exists"
+                }
+            }
+        }
+    },
+    "validation": {
+        "passwordMin": "Password must be at least 6 characters long",
+        "passwordUppercase": "Password must contain at least one uppercase letter",
+        "passwordLowercase": "Password must contain at least one lowercase letter",
+        "passwordNumber": "Password must contain at least one number",
+        "passwordSpecial": "Password must contain at least one special character"
+    }
+}

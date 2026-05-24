@@ -1,0 +1,35 @@
+<div class="h-screen flex flex-col items-center justify-center">
+    <div class="w-full max-w-md px-4">
+        <p-card [header]="'app.pages.login.title' | translate">
+            <form class="flex flex-col gap-2 mt-4" (submit)="onSubmit($event)">
+                <p-inputGroup>
+                    <p-inputGroupAddon addonType="prepend">
+                        <i class="pi pi-user"></i>
+                    </p-inputGroupAddon>
+                    <input [formField]="loginForm.login" type="text" pInputText />
+                </p-inputGroup>
+                <p-inputGroup>
+                    <p-inputGroupAddon addonType="prepend">
+                        <i class="pi pi-lock"></i>
+                    </p-inputGroupAddon>
+                    <input
+                      [formField]="loginForm.password"
+                      type="password"
+                      pInputText
+                    />
+                </p-inputGroup>
+                <p-button [disabled]="loginForm().invalid() || isLoading()" [loading]="isLoading()" icon="pi pi-sign-in" [label]="'app.pages.login.submit' | translate" type="submit" styleClass="w-full mt-4" />
+            </form>
+        </p-card>
+        <div class="mt-3 text-center">
+            <p-button
+                [disabled]="isLoading()"
+                size="small"
+                routerLink="/create-user"
+                [label]="'app.pages.login.create_account' | translate"
+                severity="secondary"
+                variant="text"
+                type="button" />
+        </div>
+    </div>
+</div>

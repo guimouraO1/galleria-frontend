@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap');
 
 @import 'tailwindcss';
+@import "tailwindcss-primeui";
+@import "primeicons/primeicons.css";
+
+
+body {
+  font-family: 'Satoshi', sans-serif;
+}

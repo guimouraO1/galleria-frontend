@@ -1,0 +1,58 @@
+{
+    "app": {
+        "common": {
+            "summary": {
+                "error": "Erro"
+            },
+            "errors": {
+                "unexpected": "Ocorreu um erro inesperado"
+            }
+        },
+        "pages": {
+            "login": {
+                "title": "Acesse sua conta",
+                "username": "Nome de usu\u00e1rio",
+                "password": "Senha",
+                "submit": "Entrar",
+                "create_account": "Criar conta",
+                "form": {
+                    "validation": {
+                        "required": "Este campo \u00e9 obrigat\u00f3rio"
+                    }
+                },
+                "errors": {
+                    "invalid-credentials": "Credenciais inv\u00e1lidas"
+                }
+            },
+            "create_user": {
+                "title": "Criar conta",
+                "name": "Nome",
+                "username": "Nome de usu\u00e1rio",
+                "password": "Senha",
+                "submit": "Criar conta",
+                "back_to_login": "Voltar para o login",
+                "form": {
+                    "validation": {
+                        "required": "Este campo \u00e9 obrigat\u00f3rio"
+                    }
+                },
+                "password": {
+                    "prompt": "Digite uma senha",
+                    "weak": "Fraca",
+                    "medium": "M\u00e9dia",
+                    "strong": "Forte"
+                },
+                "errors": {
+                    "conflict": "J\u00e1 existe um usu\u00e1rio com esse nome de usu\u00e1rio"
+                }
+            }
+        }
+    },
+    "validation": {
+        "passwordMin": "A senha deve ter pelo menos 6 caracteres",
+        "passwordUppercase": "A senha deve conter pelo menos uma letra mai\u00fascula",
+        "passwordLowercase": "A senha deve conter pelo menos uma letra min\u00fascula",
+        "passwordNumber": "A senha deve conter pelo menos um n\u00famero",
+        "passwordSpecial": "A senha deve conter pelo menos um caractere especial"
+    }
+}
