@@ -1,0 +1,22 @@
+<div class="mx-auto mt-12 w-full max-w-xl md:mt-24">
+    <p-card [header]="'app.pages.products.new' | translate">
+        <form class="flex flex-col gap-3" (submit)="submit($event)">
+            <p-inputGroup>
+                <p-inputGroupAddon addonType="prepend">
+                    <i class="pi pi-box"></i>
+                </p-inputGroupAddon>
+                <input [formField]="productForm.description" pInputText [placeholder]="'app.pages.products.fields.description' | translate" />
+            </p-inputGroup>
+            <p-inputGroup>
+                <p-inputGroupAddon addonType="prepend">
+                    <i class="pi pi-dollar"></i>
+                </p-inputGroupAddon>
+                <input [formField]="productForm.value" pInputText type="number" [placeholder]="'app.pages.products.fields.value' | translate" />
+            </p-inputGroup>
+            <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+                <p-button routerLink="/product" [disabled]="isLoading()" [label]="'app.common.actions.cancel' | translate" severity="secondary" text type="button" styleClass="w-full sm:w-auto" />
+                <p-button [disabled]="productForm().invalid() || isLoading()" [loading]="isLoading()" [label]="'app.common.actions.save' | translate" type="submit" styleClass="w-full sm:w-auto" />
+            </div>
+        </form>
+    </p-card>
+</div>

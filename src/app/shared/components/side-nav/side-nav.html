@@ -1,0 +1,47 @@
+<nav class="flex flex-col gap-1">
+    <a
+        routerLink="/dashboard"
+        routerLinkActive="app-nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="navigate.emit()"
+        class="app-nav-link flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm no-underline text-color transition-colors">
+        <i class="pi pi-home text-sm"></i>
+        <span>{{'app.layout.private.routes.dashboard' | translate}}</span>
+    </a>
+    <a
+        routerLink="/client"
+        routerLinkActive="app-nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="navigate.emit()"
+        class="app-nav-link flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm no-underline text-color transition-colors">
+        <i class="pi pi-users text-sm"></i>
+        <span>{{'app.layout.private.routes.clients' | translate}}</span>
+    </a>
+    <a
+        routerLink="/product"
+        routerLinkActive="app-nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="navigate.emit()"
+        class="app-nav-link flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm no-underline text-color transition-colors">
+        <i class="pi pi-box text-sm"></i>
+        <span>{{'app.layout.private.routes.products' | translate}}</span>
+    </a>
+    <a
+        routerLink="/order"
+        routerLinkActive="app-nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="navigate.emit()"
+        class="app-nav-link flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm no-underline text-color transition-colors">
+        <i class="pi pi-shopping-cart text-sm"></i>
+        <span>{{'app.layout.private.routes.orders' | translate}}</span>
+    </a>
+    <a
+        routerLink="/user-settings"
+        routerLinkActive="app-nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="navigate.emit()"
+        class="app-nav-link flex items-center gap-2 rounded-md border border-transparent px-2.5 py-1.5 text-sm no-underline text-color transition-colors">
+        <i class="pi pi-cog text-sm"></i>
+        <span>{{'app.layout.private.routes.user_settings' | translate}}</span>
+    </a>
+</nav>

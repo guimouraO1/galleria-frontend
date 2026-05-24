@@ -1,6 +1,8 @@
-import {ActivatedRouteSnapshot, CanActivateFn, createUrlTreeFromSnapshot, RouterStateSnapshot} from '@angular/router';
-import {AuthService} from '../services/auth-service';
+import {CanActivateFn, createUrlTreeFromSnapshot} from '@angular/router';
+import {inject} from '@angular/core';
+import {TokenService} from '../services/token-service';
 
-export const guestGuard: CanActivateFn = (route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) => {
-    return AuthService.isAuthenticated() ? createUrlTreeFromSnapshot(route, ['/dashboard']) : true;
+export const guestGuard: CanActivateFn = (route, _state) => {
+    const tokenService = inject(TokenService);
+    return tokenService.isAuthenticated() ? createUrlTreeFromSnapshot(route, ['/dashboard']) : true;
 };

@@ -9,3 +9,30 @@
 body {
   font-family: 'Satoshi', sans-serif;
 }
+
+.app-soft-border {
+  border-color: color-mix(in srgb, var(--p-surface-300) 55%, transparent);
+}
+
+.app-nav-link:hover {
+  background: color-mix(in srgb, var(--p-surface-200) 55%, transparent);
+}
+
+.app-nav-link-active {
+  background: color-mix(in srgb, var(--p-primary-color) 10%, transparent);
+  border-color: color-mix(in srgb, var(--p-primary-color) 18%, transparent);
+  color: var(--p-primary-color);
+}
+
+.app-dark .app-soft-border {
+  border-color: color-mix(in srgb, var(--p-surface-700) 55%, transparent);
+}
+
+.app-dark .app-nav-link:hover {
+  background: color-mix(in srgb, var(--p-surface-700) 45%, transparent);
+}
+
+.app-dark .app-nav-link-active {
+  background: color-mix(in srgb, var(--p-primary-color) 14%, transparent);
+  border-color: color-mix(in srgb, var(--p-primary-color) 24%, transparent);
+}

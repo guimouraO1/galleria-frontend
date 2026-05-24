@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {inject} from '@angular/core/primitives/di';
-import {Observable, tap} from 'rxjs';
+import {Injectable, inject} from '@angular/core';
+import {tap} from 'rxjs';
+import {TokenService} from './token-service';
+import {LoginResponse} from '../shared/interfaces/auth.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -9,28 +10,12 @@ import {Observable, tap} from 'rxjs';
 export class AuthService {
 
     private http = inject(HttpClient);
-
-    public refreshToken$: Observable<string> | null = null;
-
-    static isAuthenticated() {
-        return !!localStorage.getItem('accessToken');
-    }
-
-    static clearAuth() {
-        localStorage.removeItem('accessToken');
-    }
+    private tokenService = inject(TokenService);
 
     login(login: string, password: string) {
-        return this.http.post<{accessToken: string}>('/login', {login, password})
+        return this.http.post<LoginResponse>('/login', {login, password})
             .pipe(
-                tap(({accessToken}) => localStorage.setItem('accessToken', accessToken))
-            );
-    }
-
-    refreshToken() {
-        return this.http.post<{accessToken: string}>('/refresh-token', {})
-            .pipe(
-                tap(({accessToken}) => localStorage.setItem('accessToken', accessToken))
+                tap(({accessToken}) => this.tokenService.setAccessToken(accessToken))
             );
     }
 }

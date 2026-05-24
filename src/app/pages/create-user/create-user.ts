@@ -56,7 +56,7 @@ export class CreateUser {
 
         this.isLoading.set(true);
 
-        this.userService.createUser(this.createUser().login, this.createUser().password, this.createUser().name)
+        this.userService.create(this.createUser().login, this.createUser().password, this.createUser().name)
             .pipe(untilDestroyed(this))
             .subscribe({
                 next: () => this.router.navigate(['login']),

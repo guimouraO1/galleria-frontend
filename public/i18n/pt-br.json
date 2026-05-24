@@ -1,14 +1,121 @@
 {
     "app": {
         "common": {
+            "actions": {
+                "actions": "A\u00e7\u00f5es",
+                "cancel": "Cancelar",
+                "delete": "Excluir",
+                "load_more": "Carregar mais",
+                "next": "Pr\u00f3xima",
+                "new": "Novo",
+                "previous": "Anterior",
+                "save": "Salvar"
+            },
+            "fields": {
+                "id": "ID"
+            },
+            "empty": {
+                "no_data": "Nenhum registro encontrado"
+            },
+            "confirm": {
+                "delete_title": "Confirmar exclus\u00e3o",
+                "delete_message": "Tem certeza que deseja excluir este registro?",
+                "delete_account_title": "Excluir conta",
+                "delete_account_message": "Tem certeza que deseja excluir sua conta? Esta a\u00e7\u00e3o n\u00e3o pode ser desfeita."
+            },
             "summary": {
                 "error": "Erro"
             },
             "errors": {
+                "network": "N\u00e3o foi poss\u00edvel conectar ao servidor",
+                "bad_request": "Revise os dados enviados e tente novamente",
+                "unauthorized": "Sua sess\u00e3o expirou. Entre novamente",
+                "forbidden": "Voc\u00ea n\u00e3o tem permiss\u00e3o para executar esta a\u00e7\u00e3o",
+                "not_found": "Registro n\u00e3o encontrado",
+                "conflict": "J\u00e1 existe um registro com estes dados",
+                "server": "O servidor n\u00e3o conseguiu processar a solicita\u00e7\u00e3o",
                 "unexpected": "Ocorreu um erro inesperado"
             }
         },
+        "layout": {
+            "private": {
+                "title": "Galleria Bank",
+                "user": "Conta",
+                "logout": "Sair",
+                "routes": {
+                    "dashboard": "Dashboard",
+                    "clients": "Clientes",
+                    "products": "Produtos",
+                    "orders": "Pedidos",
+                    "user_settings": "Configura\u00e7\u00f5es"
+                }
+            }
+        },
         "pages": {
+            "dashboard": {
+                "title": "Dashboard"
+            },
+            "clients": {
+                "title": "Clientes",
+                "new": "Novo cliente",
+                "update": "Atualizar cliente",
+                "fields": {
+                    "name": "Nome",
+                    "cpf": "CPF",
+                    "phone": "Telefone"
+                },
+                "validation": {
+                    "name_required": "Nome \u00e9 obrigat\u00f3rio",
+                    "cpf_required": "CPF \u00e9 obrigat\u00f3rio",
+                    "phone_required": "Telefone \u00e9 obrigat\u00f3rio"
+                }
+            },
+            "products": {
+                "title": "Produtos",
+                "new": "Novo produto",
+                "update": "Atualizar produto",
+                "fields": {
+                    "description": "Descri\u00e7\u00e3o",
+                    "value": "Valor"
+                },
+                "validation": {
+                    "description_required": "Descri\u00e7\u00e3o \u00e9 obrigat\u00f3ria",
+                    "value_required": "Valor \u00e9 obrigat\u00f3rio"
+                }
+            },
+            "orders": {
+                "title": "Pedidos",
+                "new": "Novo pedido",
+                "fields": {
+                    "referenceCode": "C\u00f3digo de refer\u00eancia",
+                    "description": "Descri\u00e7\u00e3o",
+                    "clientId": "ID do cliente",
+                    "productIds": "IDs dos produtos separados por v\u00edrgula",
+                    "issuedAt": "Emitido em",
+                    "total": "Total"
+                },
+                "validation": {
+                    "reference_code_required": "C\u00f3digo de refer\u00eancia \u00e9 obrigat\u00f3rio",
+                    "client_id_required": "ID do cliente \u00e9 obrigat\u00f3rio",
+                    "product_ids_required": "Informe pelo menos um produto"
+                },
+                "errors": {
+                    "invalid": "Revise os dados do pedido e tente novamente"
+                }
+            },
+            "user_settings": {
+                "title": "Configura\u00e7\u00f5es do usu\u00e1rio",
+                "description": "Veja as informa\u00e7\u00f5es da sua conta, atualize nome ou senha, ou exclua sua conta.",
+                "update": "Atualizar conta",
+                "fields": {
+                    "name": "Nome",
+                    "login": "Login",
+                    "password": "Senha"
+                },
+                "validation": {
+                    "name_required": "Nome \u00e9 obrigat\u00f3rio"
+                }
+            },
             "login": {
                 "title": "Acesse sua conta",
                 "username": "Nome de usu\u00e1rio",

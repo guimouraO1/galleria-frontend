@@ -1,14 +1,121 @@
 {
     "app": {
         "common": {
+            "actions": {
+                "actions": "Actions",
+                "cancel": "Cancel",
+                "delete": "Delete",
+                "load_more": "Load more",
+                "next": "Next",
+                "new": "New",
+                "previous": "Previous",
+                "save": "Save"
+            },
+            "fields": {
+                "id": "ID"
+            },
+            "empty": {
+                "no_data": "No records found"
+            },
+            "confirm": {
+                "delete_title": "Confirm deletion",
+                "delete_message": "Are you sure you want to delete this record?",
+                "delete_account_title": "Delete account",
+                "delete_account_message": "Are you sure you want to delete your account? This action cannot be undone."
+            },
             "summary": {
                 "error": "Error"
             },
             "errors": {
+                "network": "Could not connect to the server",
+                "bad_request": "Review the submitted data and try again",
+                "unauthorized": "Your session has expired. Sign in again",
+                "forbidden": "You do not have permission to perform this action",
+                "not_found": "Record not found",
+                "conflict": "A record with this data already exists",
+                "server": "The server could not process the request",
                 "unexpected": "An unexpected error occurred"
             }
         },
+        "layout": {
+            "private": {
+                "title": "Galleria Bank",
+                "user": "Account",
+                "logout": "Logout",
+                "routes": {
+                    "dashboard": "Dashboard",
+                    "clients": "Clients",
+                    "products": "Products",
+                    "orders": "Orders",
+                    "user_settings": "User settings"
+                }
+            }
+        },
         "pages": {
+            "dashboard": {
+                "title": "Dashboard"
+            },
+            "clients": {
+                "title": "Clients",
+                "new": "New client",
+                "update": "Update client",
+                "fields": {
+                    "name": "Name",
+                    "cpf": "CPF",
+                    "phone": "Phone"
+                },
+                "validation": {
+                    "name_required": "Name is required",
+                    "cpf_required": "CPF is required",
+                    "phone_required": "Phone is required"
+                }
+            },
+            "products": {
+                "title": "Products",
+                "new": "New product",
+                "update": "Update product",
+                "fields": {
+                    "description": "Description",
+                    "value": "Value"
+                },
+                "validation": {
+                    "description_required": "Description is required",
+                    "value_required": "Value is required"
+                }
+            },
+            "orders": {
+                "title": "Orders",
+                "new": "New order",
+                "fields": {
+                    "referenceCode": "Reference code",
+                    "description": "Description",
+                    "clientId": "Client ID",
+                    "productIds": "Product IDs separated by comma",
+                    "issuedAt": "Issued at",
+                    "total": "Total"
+                },
+                "validation": {
+                    "reference_code_required": "Reference code is required",
+                    "client_id_required": "Client ID is required",
+                    "product_ids_required": "At least one product is required"
+                },
+                "errors": {
+                    "invalid": "Review the order data and try again"
+                }
+            },
+            "user_settings": {
+                "title": "User settings",
+                "description": "View your account information, update your name or password, or delete your account.",
+                "update": "Update account",
+                "fields": {
+                    "name": "Name",
+                    "login": "Login",
+                    "password": "Password"
+                },
+                "validation": {
+                    "name_required": "Name is required"
+                }
+            },
             "login": {
                 "title": "Access your account",
                 "username": "Username",
